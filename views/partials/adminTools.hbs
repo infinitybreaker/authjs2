@@ -1,0 +1,183 @@
+{{> menu2}}
+
+
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <section>
+                <h1 class='title is-1'>Welcome, {{Admin.fname}}</h1>
+
+            </section>
+
+            <h1 class='title is-3'>Users List:</h1>
+        </div>
+
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+
+                <!--modal container !-->
+                <div class="card">
+                    <div class="card-content">
+                        <b>Update query for </b><label id='curUser'></label>
+                        <div class="field">
+                            <button class="modal-close"></button>
+                            <div class="control">
+                                <input class="input" type="text" placeholder='eg. {role: "user"}' id=modaltext>
+
+                            </div>
+                        </div>
+                        <div class="control">
+                        </div>
+                        <footer class="card-footer">
+                            <a href="#" class="card-footer-item closeModal is-info button">Close Modal</a>
+                            <a href="#" class="card-footer-item is-info button">Update Query</a>
+                            <a href="#" class="card-footer-item button is-danger">Remove User</a>
+
+
+                        </footer>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="test">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th><abbr title="First Name">FN</abbr></th>
+                    <th><abbr title="Last Name">LN</abbr></th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th><abbr title="Where From">wFrom</abbr></th>
+                    <th><abbr title="Experience">wExp</abbr></th>
+                    <th><abbr title="Affiliate ID">affid</abbr></th>
+                    <th><abbr title="role">Role</abbr></th>
+                    <th><abbr title="balance">Balance</abbr></th>
+                    <th><abbr title="Leads Completed">LC</abbr></th>
+                    <th><abbr title="Prefered Payment Mode">prefpayment</abbr></th>
+                    <th><abbr title="Created At">createdAt</abbr></th>
+                    <th>Edit User</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Email</th>
+                    <th><abbr title="First Name">FN</abbr></th>
+                    <th><abbr title="Last Name">LN</abbr></th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th><abbr title="Where From">wFrom</abbr></th>
+                    <th><abbr title="Experience">wExp</abbr></th>
+                    <th><abbr title="Affiliate ID">affid</abbr></th>
+                    <th><abbr title="role">Role</abbr></th>
+                    <th><abbr title="balance">Balance</abbr></th>
+                    <th><abbr title="Leads Completed">LC</abbr></th>
+                    <th><abbr title="Prefered Payment Mode">prefpayment</abbr></th>
+                    <th><abbr title="Created At">createdAt</abbr></th>
+                    <th>Edit User</th>
+
+                </tr>
+            </tfoot>
+            <tbody id="userTable">
+            
+
+            </tbody>
+            
+            <script>
+                console.log()
+                let allUsers = {{{ allUsers }}}
+                console.log({{{allUsers}}}) 
+                for (var key of Object.keys(allUsers)) {
+                    console.log(key + " -> " + allUsers[key].email)
+
+                    var html = '<tr>';
+
+                    html += ('<td>' + allUsers[key].email + ' </td>')
+                    html += ('<td>' + allUsers[key].fname + ' </td>')
+                    html += ('<td>' + allUsers[key].lname + ' </td>')
+                    html += ('<td>' + allUsers[key].country + ' </td>')
+                    html += ('<td>' + allUsers[key].state + ' </td>')
+                    html += ('<td>' + allUsers[key].wfrom + ' </td>')
+                    html += ('<td>' + allUsers[key].wexp + ' </td>')
+                    html += ('<td>' + allUsers[key].affid + ' </td>')
+                    html += ('<td>' + allUsers[key].role + ' </td>')
+                    html += ('<td>' + allUsers[key].balance + ' </td>')
+                    html += ('<td>' + allUsers[key].leadsCompleted + ' </td>')
+                    html += ('<td>' + allUsers[key].prefpayment + ' </td>')
+                    html += ('<td>' + allUsers[key].createdAt + ' </td>')
+                    html += ('<td> <button class="button showModal is-info">Edit</button></td></tr>')
+
+                    $('#userTable').append(html)
+
+                }
+
+
+            </script>
+
+
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link is-current">1</a></li>
+                    <li><a class="pagination-link">2</a></li>
+                    <li><a class="pagination-link">3</a></li>
+                    <li><a class="pagination-link">4</a></li>
+                    <span class="pagination-ellipsis">&hellip;</span>
+                    <li><a class="pagination-link">5</a></li>
+                </ul>
+            </nav>
+        </table>
+</div>
+       
+
+
+
+    </div>
+</section>
+
+
+
+</div>
+
+<!--Send admin secret data (_id or custom hashed string) along with query string to post endpoint post must get (_id or custom hashed string) or respond with auth failure-->
+<script>
+
+    $(".showModal").click(function (e) {
+
+        $('#curUser').text($(this).parent().parent().find('td:nth-child(1)').text())
+
+        $(".modal").addClass("is-active");
+    });
+
+    $(".modal-close").click(function () {
+        $(".modal").removeClass("is-active");
+    });
+    $(".closeModal").click(function () {
+        $(".modal").removeClass("is-active");
+    });
+
+
+</script>
+
+<style>
+
+    #test { 
+        background-repeat: no-repeat;
+        background-position: center center; 
+
+        width:80%; 
+        height:200px; 
+
+    }
+    table {
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+  }
+
+</style>

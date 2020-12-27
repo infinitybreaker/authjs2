@@ -1,0 +1,9 @@
+Admin goes to /admin
+server will get data from mongo and give it back to the admin hbs
+^ Muskan
+
+Design a system 
+^ Urjit
+
+to use that data and send requests back to the 
+server like, edit or delete
