@@ -71,6 +71,10 @@ app.get('/', lpauth, async function (req, res, next) {
     }
 });
 
+app.get('/optin', function (req, res, next) {
+    res.render('optin');
+});
+
 app.get('/vc1000', lpauth, async function (req, res, next) {
 
     try {
